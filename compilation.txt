@@ -1,1 +1,9 @@
+PROPATH = replace(PROPATH,"/qad/opt/qad2020/dist/mfg/us/bbi","") . 
+PROPATH = "/qad/home/uidba,/qad/wrk/4913682072783505386/3063993923885371930,/qad/opt/qad2020/customizations/mfg/default/src,/qad/opt/qad2020/patches/fin/proxypatch,/qad/opt/qad2020/patches/mfg/default/src,/qad/opt/qad2020/build/work/stage/archiving/mfg/progress/xrc,/qad/opt/qad2020/build/work/stage/i19-library/mfg/progress/xrc,/qad/opt/qad2020/build/work/stage/i19pl-ee-encrypted/mfg/progress/xrc,/qad/opt/qad2020/build/catalog/packages/mfgcoreplus/3/0/7/0/qad.mfgcoreplus/code/progress/mfg,/qad/opt/qad2020/build/catalog/packages/mfg-patch/2018/0/18/851/src,/qad/opt/qad2020/build/catalog/packages/mfg-encrypted/2018/0/18/711/src,/qad/opt/qad2020/build/catalog/packages/mfg-encrypted/2018/0/18/711/src/validation,/qad/opt/qad2020/build/catalog/packages/base-api/1/1/0/79/src,/qad/opt/qad2020/build/catalog/packages/fincore-api/3/0/1/7/src,/qad/opt/qad2020/build/catalog/packages/mfgcoreplus-api/3/0/7/0/src,/qad/opt/qad2020/build/catalog/packages/qracore-api/3/0/4/1/src,/qad/opt/qad2020/build/catalog/packages/requisition-api/1/2/0/60033/src,/qad/opt/qad2020/build/catalog/packages/fin-src-proxy/2018/0/10/1,/qad/opt/qad2020/customizations/mfg/default/src/validation,/qad/opt/qad2020/customizations/mfg/default/src/,/qaddev21/opt/qad2020/build/work/system/processes/qxtend-stage/stage/qxtadpt/eB3/SP21/xrc,/qad/opt/qad2020/build/work/system/processes/qxtend-stage/stage/qxtadpt/eB3/SP21/xrc,/qad/opt/qad2020/build/catalog/packages/mfg-encrypted/2020/0/20/912/src/validation," + propath .
+
+
 run /qad/home/uidba/604/xxinenex.p
+
+
+
+

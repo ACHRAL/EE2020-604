@@ -531,12 +531,12 @@ repeat:
          END. /*IF AVAILABLE mrpc_ctrl*/
          /*07-EE2014-795 End Add*/
 
+         define variable v_count as int .
    for each pt_mstr where pt_domain = global_domain and
             pt_part  >= part  AND pt_part   <= part1 AND /* order changed for performance */
             pt_pm_code = "p" AND
             pt_status >= xstatus AND pt_status <= xstatus1
             no-lock break by pt_part:
-                message "539" view-as alert-box.
 
        /* ******************************************* */
        /* Detirmine "Favorite" Site                   */
@@ -552,8 +552,6 @@ repeat:
        l_part_type = pt_part_type.
        /*EE2014-795-Add-End*/
 
-       message "site" site skip "site1" skip site1 view-as alert-box.
-
        for each mrp_det WHERE mrp_domain = pt_domain AND
                 mrp_site >= site and mrp_site <= site1 AND  /* order changed for performace */
                 mrp_part = pt_part and
@@ -562,18 +560,15 @@ repeat:
                 no-lock
                 break by mrp_site:
 
-                    message "563" view-as alert-box.
                 if first-of( mrp_site ) then do:
                     sitecount = sitecount + 1.
                 end.
                 if sitecount = 1 then favoritesite = mrp_site.
                 else favoritesite = pt_site.
-                message "569" favoritesite view-as alert-box.
        end.
-       message "571" "favoritesite" favoritesite skip "site" site view-as alert-box.
+
        /* end of "Detirmine" Favorite Site             */
        if favoritesite < site or favoritesite > site1 then NEXT.
-       message "574" "favoritesite" favoritesite skip "site" site view-as alert-box.
        /* CALCULTE AVAILABLE STOCK and WIP QTY On Hand and WIP Qty OH Non-Nettable */
        qoh = 0.
 
@@ -594,7 +589,7 @@ repeat:
                                                        ld_part = pt_part and /*EE2014-795-V3*/
                                                        ld_site >= site AND ld_site <= site1 /*AND EE2014-795-V3*/
                                /*ld_part = pt_part EE2014-795-V3*/ NO-LOCK:
-                                message "595" view-as alert-box.
+
            qoh = qoh + ld_qty_oh.
 
            /*EE2014-795-Add-Begin*/
@@ -706,7 +701,7 @@ repeat:
                if mrp_type = "DEMAND"  then pastreqs = pastreqs + mrp_qty.
                next.
            end. /* if mrp_due_date < dates[1] */
-           message "706 next" view-as alert-box.
+           //message "706 next" view-as alert-box.
            do i = 1 to ( viNbrWeeks ):
 
                if mrp_due_date >= dates[i] and mrp_due_date < (dates[i] + 7) then
@@ -719,6 +714,7 @@ repeat:
            end. /* do i = 1 to viNbrWeeks - 1 */
 
        END. /* for each mrp_det where mrp_part= pt_part */
+       message "717" totreqs skip qtyord[i] view-as alert-box.
 
        /* TRH Replaced per Meeting with Todd of PRTM and Rick Howe  */
        /* Howe: "Just put it under the FTP ESMA                     *
@@ -1053,6 +1049,7 @@ repeat:
    FIND FIRST ad_mstr WHERE ad_domain = GLOBAL_domain AND ad_addr = bvendor NO-LOCK NO-ERROR.
    IF AVAILABLE ad_mstr THEN vendorname = ad_name.
 
+
    put stream excel unformatted
          /* Detail */
          l_datestp               DLM   /*EE2014-892*/
@@ -1117,6 +1114,8 @@ repeat:
          l_translt_days          skip.
          /*EE2014-795-Add-End*/
 
+         v_count = v_count + 1 .
+     message v_count view-as alert-box.
    END. /* End of for each pt_mstr */
 
 /* Message to user about output  location */
